@@ -3,10 +3,10 @@ from operations import*
 
 def main():
     operation = input("Введіть операцію (+, -, *, /): ")
-    num1 = float(input("Введіть першу цифру: "))
-    num2 = float(input("Введіть другу цифру: "))
+    a = float(input("Введіть перше значення: "))
+    b = float(input("Введіть друге значення: "))
 
-    result = perform_operation(operation, num1, num2)
+    result = perform_operation(operation, a, b)
     if result is None:
         print("Невідома операція")
     else:
