@@ -1,9 +1,9 @@
 students = [
-    {'name': "Анна", 'grade': 90},
-    {'name': "Віктор", 'grade': 80},
+    {'name': "Вікторія", 'grade': 90},
+    {'name': "Сергій", 'grade': 80},
     {'name': "Софія", 'grade': 60},
     {'name': "Михайло", 'grade': 85},
-    {'name': "Олександра", 'grade': 100}
+    {'name': "Дмитро", 'grade': 100}
 ]
 
 reverse_sort = input("Сортувати від меншого до більшого? (так/ні): ").lower()
