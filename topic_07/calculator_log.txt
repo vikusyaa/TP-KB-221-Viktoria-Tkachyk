@@ -1,0 +1,4 @@
+Calculator Log:
+Action: Addition, Data: 2.0 + 3.0, Result: 5.0
+Action: Multiplication, Data: 24.0 * 1.0, Result: 24.0
+Action: Subtraction, Data: 55.0 - 44.0, Result: 11.0
