@@ -1,3 +1,7 @@
+__pycache__/
+
+# Word temporary
 ~$*.doc*
 
-__pycache__
+# PowerPoint temporary
+~$*.ppt*
