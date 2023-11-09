@@ -1,23 +1,28 @@
-
 list = [
-    {"name": "Den", "phone": "0631234567", "age": 20, "email": "den@gmail.com"},
-    {"name": "Anna", "phone": "0631234567", "age": 22, "email": "anna@gmail.com"},
-    {"name": "Max",  "phone": "0631234567", "age": 21, "email": "max@gmail.com"},
-    {"name": "Kate",  "phone": "0631234567", "age": 23, "email": "kate@gmail.com"}
+    {"name":"Bob", "phone":"0631234567", "email": "bob@example.com", "age": "25"},
+    {"name":"Emma", "phone":"0631234567", "email": "emma@example.com", "age": "20"},
+    {"name":"Jon",  "phone":"0631234567", "email": "jon@example.com", "age": "19"},
+    {"name":"Zak",  "phone":"0631234567", "email": "zak@example.com", "age": "21"}
 ]
 
 def printAllList():
     for elem in list:
-        strForPrint = "Student name is " + elem["name"] + ", Phone is " + elem["phone"] + ", Age is " + str(elem["age"]) + ", Email is " + elem["email"]
+        strForPrint = (
+            "Student name is " + elem["name"] +
+            ", Phone is " + elem["phone"] +
+            ", Email is " + elem["email"] +
+            ", Age is " + elem["age"]
+        )
         print(strForPrint)
     return
 
 def addNewElement():
-    name = input("Please enter student's name: ")
-    phone = input("Please enter student's phone: ")
-    age = input("Please enter student's age: ")
-    email = input("Please enter student's email: ")
-    newItem = {"name": name, "phone": phone, "age": age, "email": email}
+    name = input("Please enter student name: ")
+    phone = input("Please enter student phone: ")
+    email = input("Please enter student email: ")
+    age = input("Please enter student age: ")
+
+    newItem = {"name": name, "phone": phone, "email": email, "age": age}
     
     insertPosition = 0
     for item in list:
@@ -39,10 +44,9 @@ def deleteElement():
     if deletePosition == -1:
         print("Element was not found")
     else:
-        print("Delete position: " + str(deletePosition))
         del list[deletePosition]
+        print("Element has been deleted")
     return
-
 
 def updateElement():
     name = input("Please enter name to be updated: ")
@@ -54,33 +58,40 @@ def updateElement():
     if updatePosition == -1:
         print("Element was not found")
     else:
+        print("Updating information for " + name)
         phone = input("Please enter updated phone: ")
-        age = input("Please enter updated age: ")
         email = input("Please enter updated email: ")
-        updatedItem = {"name": name, "phone": phone, "age": age, "email": email}
+        age = input("Please enter updated age: ")
+
+        updatedItem = {"name": name, "phone": phone, "email": email, "age": age}
         list[updatePosition] = updatedItem
         print("Element has been updated")
     return
 
+
 def main():
     while True:
-        choice = input("Please specify the action [ C create, U update, D delete, P print, X exit ] ")
-        if choice.lower() == "c":
-            print("New element will be created:")
-            addNewElement()
-        elif choice.lower() == "u":
-            print("Existing element will be updated")
-            updateElement()
-        elif choice.lower() == "d":
-            print("Element will be deleted")
-            deleteElement()
-        elif choice.lower() == "p":
-            print("List will be printed")
-            printAllList()
-        elif choice.lower() == "x":
-            print("Exit()")
-            break
-        else:
-            print("Wrong choice")
+        choice = input("Please specify the action [ C create, U update, D delete, P print,  X exit ] ")
+        match choice:
+            case "C":
+                print("New element will be created:")
+                addNewElement()
+                printAllList()
+            case "U":
+                print("Existing element will be updated")
+                updateElement()
+                printAllList()
+            case "D":
+                print("Element will be deleted")
+                deleteElement()
+                printAllList()
+            case "P":
+                print("List will be printed")
+                printAllList()
+            case "X":
+                print("Exit()")
+                break
+            case _:
+                print("Wrong choice")
 
 main()
