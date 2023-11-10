@@ -1,12 +1,13 @@
 list = [
-    {"name":"Bob", "phone":"0631234567", "email": "bob@example.com", "age": "25"},
-    {"name":"Emma", "phone":"0631234567", "email": "emma@example.com", "age": "20"},
-    {"name":"Jon",  "phone":"0631234567", "email": "jon@example.com", "age": "19"},
-    {"name":"Zak",  "phone":"0631234567", "email": "zak@example.com", "age": "21"}
+    {"name": "Mikl", "phone": "0631234567", "email": "mikl@example.com", "age": "25"},
+    {"name": "Emma", "phone": "0631234567", "email": "emma@example.com", "age": "20"},
+    {"name": "Jon", "phone": "0631234567", "email": "jon@example.com", "age": "19"},
+    {"name": "Zak", "phone": "0631234567", "email": "zak@example.com", "age": "21"}
 ]
 
 def printAllList():
-    for elem in list:
+    sorted_list = sorted(list, key=lambda x: x["name"])  # Sort the list by name
+    for elem in sorted_list:
         strForPrint = (
             "Student name is " + elem["name"] +
             ", Phone is " + elem["phone"] +
@@ -23,7 +24,7 @@ def addNewElement():
     age = input("Please enter student age: ")
 
     newItem = {"name": name, "phone": phone, "email": email, "age": age}
-    
+
     insertPosition = 0
     for item in list:
         if name > item["name"]:
@@ -67,7 +68,6 @@ def updateElement():
         list[updatePosition] = updatedItem
         print("Element has been updated")
     return
-
 
 def main():
     while True:
