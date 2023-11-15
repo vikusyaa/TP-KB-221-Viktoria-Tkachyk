@@ -1,97 +1,92 @@
-list = [
-    {"name": "Mikl", "phone": "0631234567", "email": "mikl@example.com", "age": "25"},
-    {"name": "Emma", "phone": "0631234567", "email": "emma@example.com", "age": "20"},
-    {"name": "Jon", "phone": "0631234567", "email": "jon@example.com", "age": "19"},
-    {"name": "Zak", "phone": "0631234567", "email": "zak@example.com", "age": "21"}
+students_list = [
+    {"name": "Bob", "phone": "0631234567", "age": 20, "email": "bob@gmail.com"},
+    {"name": "Emma", "phone": "0631234567", "age": 22, "email": "emma@gmail.com"},
+    {"name": "Jon", "phone": "0631234567", "age": 21, "email": "jon@gmail.com"},
+    {"name": "Zak", "phone": "0631234567", "age": 19, "email": "zak@gmail.com"}
 ]
 
-def printAllList():
-    sorted_list = sorted(list, key=lambda x: x["name"])  # Sort the list by name
-    for elem in sorted_list:
-        strForPrint = (
-            "Student name is " + elem["name"] +
-            ", Phone is " + elem["phone"] +
-            ", Email is " + elem["email"] +
-            ", Age is " + elem["age"]
-        )
-        print(strForPrint)
-    return
 
-def addNewElement():
-    name = input("Please enter student name: ")
-    phone = input("Please enter student phone: ")
-    email = input("Please enter student email: ")
-    age = input("Please enter student age: ")
+def print_all_list():
+    sorted_students = sorted(students_list, key=lambda x: x["name"])  
+    for student in sorted_students:
+        str_for_print = f"Student name {student['name']}, age {student['age']}, phone {student['phone']}, email {student['email']}"
+        print(str_for_print)
+    print()
 
-    newItem = {"name": name, "phone": phone, "email": email, "age": age}
 
-    insertPosition = 0
-    for item in list:
-        if name > item["name"]:
-            insertPosition += 1
-        else:
-            break
-    list.insert(insertPosition, newItem)
+def add_new_element():
+    name = input("Please enter the name of the student: ")
+    age = int(input("Please enter the age of the student: "))
+    phone = input("Please enter the student`s phone number: ")
+    email = input("Please enter the student`s email: ")
+    new_student = {"name": name, "phone": phone, "age": age, "email": email}
+    
+    students_list.append(new_student)
+    students_list.sort(key=lambda x: x["name"])  
     print("New element has been added")
-    return
+    print_all_list()
 
-def deleteElement():
+
+def delete_element(): 
     name = input("Please enter name to be deleted: ")
-    deletePosition = -1
-    for item in list:
-        if name == item["name"]:
-            deletePosition = list.index(item)
+    delete_position = -1
+    for student in students_list:
+        if name == student["name"]:
+            delete_position = students_list.index(student)
             break
-    if deletePosition == -1:
+    if delete_position == -1:
         print("Element was not found")
     else:
-        del list[deletePosition]
-        print("Element has been deleted")
-    return
+        del students_list[delete_position]
+        print("Element has been removed")
+        print_all_list()
 
-def updateElement():
+
+def update_element():
     name = input("Please enter name to be updated: ")
-    updatePosition = -1
-    for item in list:
-        if name == item["name"]:
-            updatePosition = list.index(item)
-            break
-    if updatePosition == -1:
-        print("Element was not found")
-    else:
-        print("Updating information for " + name)
-        phone = input("Please enter updated phone: ")
-        email = input("Please enter updated email: ")
-        age = input("Please enter updated age: ")
+    for index, student in enumerate(students_list):
+        if name == student["name"]:
+            new_name = input("Enter a new name: ")
+            new_age = int(input("Enter a new age: "))
+            new_phone = input("Enter a new phone: ")
+            new_email = input("Enter a new email: ")
+            new_element = {"name": new_name, "age": new_age, "phone": new_phone, "email": new_email}
 
-        updatedItem = {"name": name, "phone": phone, "email": email, "age": age}
-        list[updatePosition] = updatedItem
-        print("Element has been updated")
-    return
+            del students_list[index]
+            insert_position = 0
+            for pos, elem in enumerate(students_list):
+                if new_name > elem["name"]:
+                    insert_position = pos + 1
+                else:
+                    break
+            students_list.insert(insert_position, new_element)
+            print("Element has been updated")
+            print_all_list()
+            break
+    else:
+        print("Element was not found")
+
 
 def main():
     while True:
-        choice = input("Please specify the action [ C create, U update, D delete, P print,  X exit ] ")
-        match choice:
-            case "C":
-                print("New element will be created:")
-                addNewElement()
-                printAllList()
-            case "U":
-                print("Existing element will be updated")
-                updateElement()
-                printAllList()
-            case "D":
-                print("Element will be deleted")
-                deleteElement()
-                printAllList()
-            case "P":
-                print("List will be printed")
-                printAllList()
-            case "X":
-                print("Exit()")
-                break
-            case _:
-                print("Wrong choice")
+        choice = input("Please specify the action [C create, U update, D delete, P print, X exit]: ")
+        if choice.upper() == "C":
+            print("New element will be created:")
+            add_new_element()
+        elif choice.upper() == "U":
+            print("Existing element will be updated")
+            update_element()
+        elif choice.upper() == "D":
+            print("Element will be deleted")
+            delete_element()
+        elif choice.upper() == "P":
+            print("List will be printed")
+            print_all_list()
+        elif choice.upper() == "X":
+            print("Exit")
+            break
+        else:
+            print("Wrong choice")
+
 
 main()
