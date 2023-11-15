@@ -1,5 +1,5 @@
 students_list = [
-    {"name": "Bob", "phone": "0631234567", "age": 20, "email": "bob@gmail.com"},
+    {"name": "Bob", "phon": "0631234567", "age": 20, "email": "bob@gmail.com"},
     {"name": "Emma", "phone": "0631234567", "age": 22, "email": "emma@gmail.com"},
     {"name": "Jon", "phone": "0631234567", "age": 21, "email": "jon@gmail.com"},
     {"name": "Zak", "phone": "0631234567", "age": 19, "email": "zak@gmail.com"}
